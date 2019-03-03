@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="daily-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- Support multiple-JVM writing to the same log file -->
+    <prudent>true</prudent>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>auto-test.%d{yyyy.MM.dd}.log</fileNamePattern>
+      <maxHistory>30</maxHistory> 
+      <totalSizeCap>3GB</totalSizeCap>
+    </rollingPolicy>
+
+    <encoder>
+      <pattern>{%d{yyyy-MM-dd HH:mm:ss.SSS}} [%thread] %-5level %logger{36}.%M\(%line\) - %msg%n</pattern>
+    </encoder>
+    
+  </appender> 
+  
+   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>{%d{MM-dd HH:mm:ss.SSS}} [%thread] %-5level %logger{36}.%M\(%line\) - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="log-stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <destination>192.168.9.150:6044</destination>
+    <destination>192.168.11.60:6044</destination>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <customFields>{"fields" : { "log_type" : "tentative-cpe-worker" } }</customFields>
+    </encoder>
+  </appender>
+  
+  <logger name="org.springframework" level="INFO" />
+  <logger name="sun.net" level="WARN" />
+  <logger name="org.openqa.selenium" level="WARN" />
+  <logger name="javax" level="WARN" />
+  <logger name="com.selenium.test" level="DEBUG" />
+
+  <root level="INFO">
+    <appender-ref ref="console" />
+  </root>
+
+  <root level="DEBUG">
+    <appender-ref ref="daily-file" />
+    <appender-ref ref="log-stash" />
+  </root>
+  
+</configuration>
