@@ -93,9 +93,9 @@ public class AutoTestService {
 		logger.info("click login button");
 		pauseSeconds(10);
 		
-//		installPlugin(driver);
+		installPlugin(driver);
 		
-		configInstance(driver);
+//		configInstance(driver);
 		
 //		driver.quit();
 	}
@@ -150,7 +150,7 @@ public class AutoTestService {
         
         pauseSeconds(1);
         
-        logger.info("clicke next button, wating installation to be done.");
+        logger.info("click next button, waiting installation to be done.");
         WebElement nextButton2 = driver.findElement(By.xpath("//span[@unselectable='on' and text()='Next']"));
         nextButton2.click();
         
