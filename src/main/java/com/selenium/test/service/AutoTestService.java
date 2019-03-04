@@ -240,6 +240,9 @@ public class AutoTestService {
         WebElement saveSettingBtn = driver.findElement(By.xpath("//span[starts-with(@id,'button-') and text()='Save Settings']"));
         saveSettingBtn.click();
         
+        pauseSeconds(2);
+        WebElement lastOKBtn = driver.findElement(By.xpath("//span[starts-with(@id,'button-') and text()='OK']"));
+        lastOKBtn.click();
 	}
 	
 	private void pauseSeconds(int sec){
