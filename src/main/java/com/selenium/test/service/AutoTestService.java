@@ -243,6 +243,10 @@ public class AutoTestService {
         pauseSeconds(2);
         WebElement lastOKBtn = driver.findElement(By.xpath("//span[starts-with(@id,'button-') and text()='OK']"));
         lastOKBtn.click();
+        
+        pauseSeconds(2);
+        WebElement closeBtn = driver.findElement(By.xpath("//span[starts-with(@id,'button-') and text()='Close']"));
+        closeBtn.click();
 	}
 	
 	private void pauseSeconds(int sec){
