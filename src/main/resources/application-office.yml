@@ -1,0 +1,9 @@
+logging:
+  config: classpath:spring-logback.xml
+test:
+   url: https://192.168.8.128/ui/login.action
+   user: admin
+   password: Simple@0
+   file: D:\project\FusionDirector\mosai_gitlab\fd-vrealize-plugin\src\huawei-fusion-director-management-pack\build\deploy\HuaweiFusionDirectorManagementPack_1.0.1.pak
+browser:
+  driver: c:\\chromedriver-72.exe
