@@ -14,12 +14,14 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class AutoTestService {
+@Qualifier(value="AutoTestService") 
+public class AutoTestService implements TestService {
 	
 	private static Logger logger = LoggerFactory.getLogger(AutoTestService.class);
 	
@@ -54,8 +56,13 @@ public class AutoTestService {
     @Value("${test.fd.pass}")
     private String pass;
     
+    WebDriver driver = new ChromeDriver();
+    
 	
-	public void test(){
+	/* (non-Javadoc)
+     * @see com.selenium.test.service.TestService#start()
+     */
+	public void start(){
 		
 		System.setProperty("webdriver.chrome.driver", driverLocation);
 		
@@ -100,9 +107,12 @@ public class AutoTestService {
 //		driver.quit();
 	}
 	
-	private void installPlugin(WebDriver driver){
+	/* (non-Javadoc)
+     * @see com.selenium.test.service.TestService#installPlugin(org.openqa.selenium.WebDriver)
+     */
+	public void installPlugin(WebDriver driver){
         
-        logger.info("click config button");
+        logger.info("click config button");              
         WebElement configIcon = driver.findElement(By.id("objectNavigatorToolbarAdministrationBtn-btnIconEl"));
         configIcon.click();
         
@@ -172,7 +182,10 @@ public class AutoTestService {
         logger.info("plugin install complete.");
 	}
 	
-	private void configInstance(WebDriver driver){
+	/* (non-Javadoc)
+     * @see com.selenium.test.service.TestService#configInstance(org.openqa.selenium.WebDriver)
+     */
+	public void configInstance(WebDriver driver){
 	    logger.info("click config button");
         WebElement configIcon = driver.findElement(By.id("objectNavigatorToolbarAdministrationBtn-btnIconEl"));
         configIcon.click();
