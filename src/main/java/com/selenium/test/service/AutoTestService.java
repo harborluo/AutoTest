@@ -54,6 +54,10 @@ public class AutoTestService {
     @Value("${test.fd.pass}")
     private String pass;
     
+    @Value("${test.fd.configBtnId}")
+    private String configBtnId;
+    
+    
 	
 	public void test(){
 		
@@ -94,8 +98,9 @@ public class AutoTestService {
 		pauseSeconds(10);
 		
 		installPlugin(driver);
+		pauseSeconds(60);
 		
-//		configInstance(driver);
+		configInstance(driver);
 		
 //		driver.quit();
 	}
@@ -103,7 +108,7 @@ public class AutoTestService {
 	private void installPlugin(WebDriver driver){
         
         logger.info("click config button");
-        WebElement configIcon = driver.findElement(By.id("objectNavigatorToolbarAdministrationBtn-btnIconEl"));
+        WebElement configIcon = driver.findElement(By.id(configBtnId));
         configIcon.click();
         
         pauseSeconds(8);
@@ -170,11 +175,15 @@ public class AutoTestService {
         finishedBtn.click();
         
         logger.info("plugin install complete.");
+        
 	}
 	
 	private void configInstance(WebDriver driver){
+		
+		pauseSeconds(3);
+		
 	    logger.info("click config button");
-        WebElement configIcon = driver.findElement(By.id("objectNavigatorToolbarAdministrationBtn-btnIconEl"));
+        WebElement configIcon = driver.findElement(By.id(configBtnId));
         configIcon.click();
         
         pauseSeconds(8);
