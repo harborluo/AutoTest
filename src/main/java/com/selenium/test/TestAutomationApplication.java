@@ -13,15 +13,15 @@ import com.selenium.test.service.AutoTestService;
 
 @SpringBootApplication
 @EnableScheduling
-public class Application implements CommandLineRunner {
+public class TestAutomationApplication implements CommandLineRunner {
 
-	private static Logger logger = LoggerFactory.getLogger(Application.class);
+	private static Logger logger = LoggerFactory.getLogger(TestAutomationApplication.class);
 
 	@Autowired
 	private AutoTestService service;
 
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(Application.class);
+		SpringApplication app = new SpringApplication(TestAutomationApplication.class);
 		app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
 	}

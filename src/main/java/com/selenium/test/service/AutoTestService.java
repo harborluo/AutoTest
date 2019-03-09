@@ -95,7 +95,7 @@ public class AutoTestService {
 		loginButton.click();
 		
 		logger.info("click login button");
-		pauseSeconds(10);
+		pauseSeconds(30);
 		
 		installPlugin(driver);
 		pauseSeconds(60);
@@ -117,7 +117,7 @@ public class AutoTestService {
         WebElement addIcon = driver.findElement(By.xpath("//a[starts-with(@id,'addSolutionBtn')]"));
         addIcon.click();
         
-        pauseSeconds(2);
+        pauseSeconds(5);
         
         logger.info("select pak file");
         WebElement file = driver.findElement(By.xpath("//input[@data-ref='fileInputEl']"));
