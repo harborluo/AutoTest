@@ -4,12 +4,13 @@ test:
    url: https://192.168.8.128/ui/login.action
    user: admin
    password: Simple@0
-   file: D:\project\FusionDirector\mosai_gitlab\fd-vrealize-plugin\src\huawei-fusion-director-management-pack\build\deploy\HuaweiFusionDirectorManagementPack_1.0.1.pak
+   file: D:\project\FusionDirector\mosai_gitlab\fd-vrealize-plugin\src\huawei-fusion-director-management-pack\build\deploy\HuaweiFusionDirectorManagementPack_1.0.2.pak
    fd:
      name: host_192.168.11.91
      host: 192.168.11.91
      port: 32102
      user: rootRedfish
      pass: Machine@123
+     configBtnId: objectNavigatorToolbarAdministrationBtn
 browser:
   driver: c:\\chromedriver-72.exe
