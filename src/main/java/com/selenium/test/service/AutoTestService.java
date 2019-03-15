@@ -20,25 +20,25 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AutoTestService {
-	
-	private static Logger logger = LoggerFactory.getLogger(AutoTestService.class);
-	
+    
+    private static Logger logger = LoggerFactory.getLogger(AutoTestService.class);
+    
 
-	@Value("${browser.driver}")
-	private String driverLocation;
-	
-	@Value("${test.url}")
-	private String url;
-	
-	@Value("${test.user}")
-	private String user;
-	
-	@Value("${test.password}")
-	private String password;
-	
-	@Value("${test.file}")
-	private String pakFile;
-	
+    @Value("${browser.driver}")
+    private String driverLocation;
+    
+    @Value("${test.url}")
+    private String url;
+    
+    @Value("${test.user}")
+    private String user;
+    
+    @Value("${test.password}")
+    private String password;
+    
+    @Value("${test.file}")
+    private String pakFile;
+    
     @Value("${test.fd.name}")
     private String displayName;
     
@@ -58,54 +58,54 @@ public class AutoTestService {
     private String configBtnId;
     
     
-	
-	public void test(){
-		
-		System.setProperty("webdriver.chrome.driver", driverLocation);
-		
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		
-		driver.get(url);
-		
-		logger.info("Open chrome broswer with url {}", url);
-		
-		(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-			public Boolean apply(WebDriver d) {
-				return d.findElement(By.id("userName-inputEl")).isDisplayed();
-			}
-		});
-		
-		logger.info("find input field for user and password.");
-		
-		WebElement userInput = driver.findElement(By.id("userName-inputEl"));
-		userInput.click();
-		
-		pauseSeconds(1);
-		
-		userInput.sendKeys(user);
-		logger.info("send keys {} to input field {}", user, "userName-inputEl");
-		
-		WebElement passwordInput = driver.findElement(By.id("password-inputEl"));
-		passwordInput.click();
-		passwordInput.sendKeys(password);
-		logger.info("send keys {} to input field {}", password, "password-inputEl");
-		
-		WebElement loginButton = driver.findElement(By.id("loginBtn-btnInnerEl"));
-		loginButton.click();
-		
-		logger.info("click login button");
-		pauseSeconds(30);
-		
-		installPlugin(driver);
-		pauseSeconds(60);
-		
-		configInstance(driver);
-		
-//		driver.quit();
-	}
-	
-	private void installPlugin(WebDriver driver){
+    
+    public void test(){
+        
+        System.setProperty("webdriver.chrome.driver", driverLocation);
+        
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        
+        driver.get(url);
+        
+        logger.info("Open chrome broswer with url {}", url);
+        
+        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                return d.findElement(By.id("userName-inputEl")).isDisplayed();
+            }
+        });
+        
+        logger.info("find input field for user and password.");
+        
+        WebElement userInput = driver.findElement(By.id("userName-inputEl"));
+        userInput.click();
+        
+        pauseSeconds(1);
+        
+        userInput.sendKeys(user);
+        logger.info("send keys {} to input field {}", user, "userName-inputEl");
+        
+        WebElement passwordInput = driver.findElement(By.id("password-inputEl"));
+        passwordInput.click();
+        passwordInput.sendKeys(password);
+        logger.info("send keys {} to input field {}", password, "password-inputEl");
+        
+        WebElement loginButton = driver.findElement(By.id("loginBtn-btnInnerEl"));
+        loginButton.click();
+        
+        logger.info("click login button");
+        pauseSeconds(30);
+        
+        installPlugin(driver);
+        pauseSeconds(60);
+        
+        configInstance(driver);
+        
+//        driver.quit();
+    }
+    
+    private void installPlugin(WebDriver driver){
         
         logger.info("click config button");
         WebElement configIcon = driver.findElement(By.id(configBtnId));
@@ -176,13 +176,13 @@ public class AutoTestService {
         
         logger.info("plugin install complete.");
         
-	}
-	
-	private void configInstance(WebDriver driver){
-		
-		pauseSeconds(3);
-		
-	    logger.info("click config button");
+    }
+    
+    private void configInstance(WebDriver driver){
+        
+        pauseSeconds(3);
+        
+        logger.info("click config button");
         WebElement configIcon = driver.findElement(By.id(configBtnId));
         configIcon.click();
         
@@ -256,16 +256,16 @@ public class AutoTestService {
         pauseSeconds(2);
         WebElement closeBtn = driver.findElement(By.xpath("//span[starts-with(@id,'button-') and text()='Close']"));
         closeBtn.click();
-	}
-	
-	private void pauseSeconds(int sec){
-		
-		logger.info("Pause for {} seconds", sec);
-		
-		try {
-			Thread.sleep(sec * 1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+    }
+    
+    private void pauseSeconds(int sec){
+        
+        logger.info("Pause for {} seconds", sec);
+        
+        try {
+            Thread.sleep(sec * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

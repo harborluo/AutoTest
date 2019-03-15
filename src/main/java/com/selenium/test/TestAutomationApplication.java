@@ -15,20 +15,20 @@ import com.selenium.test.service.AutoTestService;
 @EnableScheduling
 public class TestAutomationApplication implements CommandLineRunner {
 
-	private static Logger logger = LoggerFactory.getLogger(TestAutomationApplication.class);
+    private static Logger logger = LoggerFactory.getLogger(TestAutomationApplication.class);
 
-	@Autowired
-	private AutoTestService service;
+    @Autowired
+    private AutoTestService service;
 
-	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(TestAutomationApplication.class);
-		app.setBannerMode(Banner.Mode.OFF);
-		app.run(args);
-	}
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(TestAutomationApplication.class);
+        app.setBannerMode(Banner.Mode.OFF);
+        app.run(args);
+    }
 
-	public void run(String... args) throws Exception {
-		logger.info("Auto test begin...");
-		service.test();
-	}
+    public void run(String... args) throws Exception {
+        logger.info("Auto test begin...");
+        service.test();
+    }
 
 }
