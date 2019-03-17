@@ -1,5 +1,5 @@
  spring:  
     profiles:
-       active: office-67
+       active: home
     application: 
        name: auto test app for vROM
