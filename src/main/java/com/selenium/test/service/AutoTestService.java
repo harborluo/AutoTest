@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -213,7 +214,7 @@ public class AutoTestService {
             pauseSeconds(1);
             
             if(index==0){
-                text.sendKeys(this.code + new Random().nextInt(1000));
+                text.sendKeys(this.code + "_" + new Random().nextInt(1000));
             } else if (index==1){
                 text.sendKeys(this.code);
             } else {
@@ -222,9 +223,17 @@ public class AutoTestService {
             index++;
         }
         pauseSeconds(2);
-        logger.info("click OK button to save");
-        WebElement okBtn = driver.findElement(By.xpath("//span[text()='OK']"));
-        okBtn.click();
+        logger.info("click OK button to save credential");
+        //button-1434-btnInnerEl
+//        WebElement okBtn = driver.findElement(By.xpath("//self::span[text()='OK']"));
+//        WebElement okBtn = driver.findElements(By.xpath("//a[starts-with(@id,'button-') and @tabindex='-1' and starts-with(@componentid,'button-')]")).get(5);
+//        okBtn.click();
+        
+        //$("span[id$='btnWrap']:contains('OK')")[1].click()
+     
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("$(\"span[id$='btnWrap']:contains('OK')\")[1].click()");
+
         
         pauseSeconds(2);
         List<WebElement> textFields = driver.findElements(By.xpath("//input[starts-with(@id,'textfield-')]"));
