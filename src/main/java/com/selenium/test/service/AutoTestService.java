@@ -247,7 +247,7 @@ public class AutoTestService {
               text.sendKeys(this.displayName);
             } else if (index==1){
                 text.sendKeys(this.host);
-            } else {
+            } else if (index==2) {
                 text.sendKeys(this.port);
             }
             index++;
