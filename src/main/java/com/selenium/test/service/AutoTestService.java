@@ -254,17 +254,19 @@ public class AutoTestService {
         }
         
         pauseSeconds(2);
-        logger.info("click button {}","save setting");
         WebElement saveSettingBtn = driver.findElement(By.xpath("//span[starts-with(@id,'button-') and text()='Save Settings']"));
         saveSettingBtn.click();
+        logger.info("click button {}","save setting");
         
         pauseSeconds(2);
         WebElement lastOKBtn = driver.findElement(By.xpath("//span[starts-with(@id,'button-') and text()='OK']"));
         lastOKBtn.click();
+        logger.info("click button {}","OK");
         
         pauseSeconds(2);
         WebElement closeBtn = driver.findElement(By.xpath("//span[starts-with(@id,'button-') and text()='Close']"));
         closeBtn.click();
+        logger.info("click button {}","Close");
     }
     
     private void pauseSeconds(int sec){
