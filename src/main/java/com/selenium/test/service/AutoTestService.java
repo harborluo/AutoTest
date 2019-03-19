@@ -77,8 +77,9 @@ public class AutoTestService {
 
             if (files==null||files.length==0){
                 logger.error("No pak files found.");
+                return;
             }
-            
+
             pakFileName = files[0].getAbsolutePath();
 
         } else {
