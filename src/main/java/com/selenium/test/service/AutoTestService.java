@@ -2,6 +2,8 @@ package com.selenium.test.service;
 
 
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.List;
 import java.util.Random;
 
@@ -38,7 +40,7 @@ public class AutoTestService {
     private String password;
     
     @Value("${test.file}")
-    private String pakFile;
+    private String pakFileDir;
     
     @Value("${test.fd.name}")
     private String displayName;
@@ -61,6 +63,27 @@ public class AutoTestService {
     
     
     public void test(){
+
+        String pakFileName = "";
+
+        File dir = new File(pakFileDir);
+
+        if(dir.exists() && dir.isDirectory()){
+            File[] files = dir.listFiles(new FilenameFilter() {
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".pak");
+                }
+            });
+
+            if (files==null||files.length==0){
+                logger.error("No pak files found.");
+            }
+            
+            pakFileName = files[0].getAbsolutePath();
+
+        } else {
+            return;
+        }
         
         System.setProperty("webdriver.chrome.driver", driverLocation);
         
@@ -98,7 +121,7 @@ public class AutoTestService {
         logger.info("click login button");
         pauseSeconds(30);
         
-        installPlugin(driver);
+        installPlugin(driver, pakFileName);
         pauseSeconds(60);
         
         configInstance(driver);
@@ -106,7 +129,7 @@ public class AutoTestService {
 //        driver.quit();
     }
     
-    private void installPlugin(WebDriver driver){
+    private void installPlugin(WebDriver driver, String pakFileName){
         
         logger.info("click config button");
         WebElement configIcon = driver.findElement(By.id(configBtnId));
@@ -122,7 +145,7 @@ public class AutoTestService {
         
         logger.info("select pak file");
         WebElement file = driver.findElement(By.xpath("//input[@data-ref='fileInputEl']"));
-        file.sendKeys(pakFile);
+        file.sendKeys(pakFileName);
         
         pauseSeconds(1);
         

@@ -2,4 +2,4 @@
     profiles:
        active: office-67
     application: 
-       name: auto test app for vROM
+       name: Test automation for vROM plugin
