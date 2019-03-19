@@ -82,6 +82,8 @@ public class AutoTestService {
 
             pakFileName = files[0].getAbsolutePath();
 
+            logger.info("pak file found: {}", pakFileName);
+
         } else {
             return;
         }
