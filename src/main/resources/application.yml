@@ -1,5 +1,5 @@
  spring:  
     profiles:
-       active: office-67
+       active: home-67
     application: 
        name: Test automation for vROM plugin
