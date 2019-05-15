@@ -7,7 +7,7 @@ public class Counter {
     private volatile int count =0;
     public void inc(){
         try{
-            Thread.sleep(300);
+            Thread.sleep(3);
         } catch (InterruptedException e){
             e.printStackTrace();
         }

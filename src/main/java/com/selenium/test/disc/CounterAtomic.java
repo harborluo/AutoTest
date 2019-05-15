@@ -14,7 +14,7 @@ public class CounterAtomic {
 
     public void inc(){
         try{
-            Thread.sleep(300);
+            Thread.sleep(3);
         } catch (InterruptedException e){
             e.printStackTrace();
         }
