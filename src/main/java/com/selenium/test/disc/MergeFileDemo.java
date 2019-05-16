@@ -6,6 +6,8 @@ import org.springframework.util.FileSystemUtils;
 
 import java.io.*;
 import java.nio.channels.FileChannel;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Created by harbor on 2019/5/16.
@@ -130,10 +132,13 @@ public class MergeFileDemo {
 
         File dir  = new File(path);
         File[] files = dir.listFiles();
-        String[] filePaths = new String[files.length];
-        for(int i=0;i<files.length;i++){
-            filePaths[i] = files[i].getAbsolutePath();
-        }
+//        String[] filePaths = new String[files.length];
+//        for(int i=0;i<files.length;i++){
+//            filePaths[i] = files[i].getAbsolutePath();
+//        }
+        String[] filePaths = {};
+
+        filePaths=   Arrays.stream(files).map(fe->fe.getAbsolutePath()).collect(Collectors.toList()).toArray(filePaths);
 
         long start_time = System.currentTimeMillis();
         mergeFiles(filePaths,"c:/merge-dir-buffer/buffer.txt");
